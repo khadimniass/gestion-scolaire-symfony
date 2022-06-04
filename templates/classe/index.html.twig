@@ -1,0 +1,10 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Hello ClasseController!{% endblock %}
+
+{% block body %}
+    dump(classes)
+    {% for classe in classes %}
+       <h3> {{ classe.libelle }} </h3>
+    {% endfor%}
+{% endblock %}

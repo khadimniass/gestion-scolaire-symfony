@@ -1,0 +1,40 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Hello ProfesseurController!{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+{% block body %}
+
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom Complet</th>
+                <th>Grade</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for professeur in professeurs %}
+            <tr>
+                <td>#</td>
+                <td>{{ professeur.nomComplet }}</td>
+                <td>{{ professeur.grade }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr class="bg-secondary">
+                <th>Rendering engine</th>
+                <th>Browser</th>
+                <th>Platform(s)</th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="pagination">
+            {{ knp_pagination_render(professeurs) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Hello ProfesseurController!{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+{% block body %}
+    <h1>creation d'un prof</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Creer</button>
+    {{ form_end(form) }}
+{% endblock %}
