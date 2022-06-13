@@ -1,0 +1,9 @@
+NOTE : les erreurs sont souvant dues au 'sudo'
+1 : il faut d'abord l'installer dans le projet via la commande suivante : $
+    `composer require encore`
+2 : isntaller toutes les dependaces avec de webpack
+    yarn install ou npm install (il faut au prealable installer yarn ou nmp dans la machine)
+3 : et maintenat on peut executer la commande : `npm run build`
+pour dire que mes fichers css ou js sont pret a etre executer (on verra un dossier build qui creer dans public)
+'on verra tous les scripts disponibles dans ': package.json
+A chaque changement de code, il faire une compilation : `npm run build`

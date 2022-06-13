@@ -124,7 +124,11 @@ class Etudiant extends User
                 $demande->setEtudiant(null);
             }
         }
-
         return $this;
+    }
+    public function getRoles(): array
+    {
+        $roles[] = 'ROLE_ETUDIANT';
+        return array_unique($roles);
     }
 }

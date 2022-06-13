@@ -48,4 +48,9 @@ class AC extends User
 
         return $this;
     }
+    public function getRoles(): array
+    {
+        $roles[] = 'ROLE_AC';
+        return $roles;
+    }
 }

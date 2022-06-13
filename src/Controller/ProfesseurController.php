@@ -30,6 +30,7 @@ class ProfesseurController extends AbstractController
     {
         $professeur= new Professeur();
         $form=$this->createForm(ProfesseurType::class,$professeur);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $manager->persist($professeur);
             $manager->flush();

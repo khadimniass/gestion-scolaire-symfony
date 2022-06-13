@@ -1,0 +1,37 @@
+{% extends 'layout/base.html.twig' %}
+{% block title 'registration student' %}
+{% block body %}
+    <div class="col-10 offset-2">
+        {{ form_start(registrationForm) }}
+        <div class="row ">
+        <div class="col-md-4">
+            {{ form_row(registrationForm.nomComplet, {attr:{'class':'form-control','placeholder':'indiquer votre nom'}}) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.email, {attr:{'class':'form-control','placeholder':'votre email'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{ form_row(registrationForm.password, {attr:{'class':'form-control','placeholder':'indiquer un mot de pass valide'}}) }}
+        </div>
+    </div>
+    <div class="row">
+       <div class="col-md-4">
+        {{ form_row(registrationForm.sexe,{attr:{'class':'form-control','placeholder':'veillez choisir votre sexe'}})}}
+       </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.matricule,{attr:{'class':'form-control'}})}}
+        </div>
+    </div>
+
+        <div class="col-md-8 ">
+            {{ form_row(registrationForm.adresse,{attr:{'class':'form-control','placeholder':'TOUBA DAROU KHOUDOSS'}})}}
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary col-md-8 mt-4">ENREGISTRER</button>
+        </div>
+    </div>
+    {{ form_end(registrationForm) }}
+{% endblock %}

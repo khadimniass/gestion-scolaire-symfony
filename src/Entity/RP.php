@@ -114,4 +114,9 @@ class RP extends User
         }
         return $this;
     }
+    public function getRoles(): array
+    {
+        $roles[] = 'ROLE_RP';
+        return array_unique($roles);
+    }
 }

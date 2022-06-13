@@ -4,24 +4,34 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Nullable;
+use http\Message;
+use phpDocumentor\Reflection\DocBlock\Tags\Property;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name:"roles",type:"string")]
 #[ORM\DiscriminatorMap(["rp"=>"RP","ac"=>"AC","etudiant"=>"Etudiant"])]
+#[UniqueEntity(fields: ['email'], message:'cet e-mail existe déjà, veillez choisir un autre')]
 
 class User extends Personne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     protected $email;
 
-
     #[ORM\Column(type: 'string')]
     protected $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password",message="Vous n'avez pas tapé le même mot de passe")
+     */
+    public $confirmPassword;
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -56,10 +66,9 @@ class User extends Personne implements UserInterface, PasswordAuthenticatedUserI
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
+       // $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
@@ -75,16 +84,14 @@ class User extends Personne implements UserInterface, PasswordAuthenticatedUserI
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
-
-        return $this;
+       $this->password = $password;
+       return $this;
     }
-
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
