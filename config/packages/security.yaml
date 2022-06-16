@@ -36,6 +36,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/etudiant, roles: ROLE_AC }
+         - { path: ^/professeur, roles: ROLE_RP }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

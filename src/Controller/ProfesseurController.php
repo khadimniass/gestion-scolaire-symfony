@@ -6,6 +6,7 @@ use App\Entity\Professeur;
 use App\Form\ProfesseurType;
 use App\Repository\ProfesseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,9 +33,10 @@ class ProfesseurController extends AbstractController
         $form=$this->createForm(ProfesseurType::class,$professeur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $professeur->setRp($this->getUser());
             $manager->persist($professeur);
             $manager->flush();
-            $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_professeur');
         }
         return $this->render('professeur/create.html.twig',['form'=>$form->createView()]);
     }

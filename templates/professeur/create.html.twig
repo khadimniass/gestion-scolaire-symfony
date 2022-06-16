@@ -6,8 +6,19 @@
 {% endblock %}
 {% block body %}
     <h1>creation d'un prof</h1>
+    <div class="">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success">Creer</button>
+    <div class="row">
+        <div class="col-md-8 mb-3">
+        {{ form_widget(form.nomComplet,{attr:{'class':'form-control','placeholder':'nom complet du proffesseur'}}) }}
+        </div>
+        <div class="col-md-8">
+        {{ form_widget(form.grade,{attr:{'class':'form-control','placeholder':'INGENIEUR'}}) }}
+        </div>
+    </div>
+    <div class="">
+     <button class="btn btn-success mt-3 col-md-8">Creer</button>
+    </div>
     {{ form_end(form) }}
+    </div>
 {% endblock %}

@@ -27,6 +27,7 @@ class AcController extends AbstractController
     #[Route('/register-ac', name: 'app_register_ac')]
     public function create(FlashyNotifier $flashy, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthentificatorAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+
         $userAc = new AC();
         $form = $this->createForm(AcType::class, $userAc);
         $form->handleRequest($request);
@@ -47,8 +48,9 @@ class AcController extends AbstractController
                 $request
             );
         }
-        return $this->render('ac/register.html.twig',[
+        return $this->render('registration/register.html.twig',[
             'registrationForm' => $form->createView(),
+            'usercalled'=>"AC"
         ]);
     }
 }

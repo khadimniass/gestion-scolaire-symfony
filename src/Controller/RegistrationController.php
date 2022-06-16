@@ -43,8 +43,9 @@ class RegistrationController extends AbstractController
             );
         }
 //        dd($user->getRoles());
-        return $this->render('rp/register.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'usercalled'=>"RP"
         ]);
     }
 }
